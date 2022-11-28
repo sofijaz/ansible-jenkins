@@ -10,7 +10,7 @@ pipeline {
         stage('Test') {
             steps {
                 echo 'Testing..'
-                echo "QATools version: ${env.GIT_COMMIT[0..2]}"
+                echo "QATools version: ${env.GIT_COMMIT}"
             }
         }
         stage('Deploy') {
