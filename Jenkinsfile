@@ -5,11 +5,13 @@ pipeline {
     }
     stages {
         stage('Mkdir') {
-            powershell """
-                    if (-not (test-path ${BINARIES_DIR}) ) {
-                        mkdir ${BINARIES_DIR}
-                    }
-             """
+            steps {
+                powershell """
+                        if (-not (test-path ${BINARIES_DIR}) ) {
+                            mkdir ${BINARIES_DIR}
+                        }
+                 """
+            }
         }
         stage('Build') {
             steps {
