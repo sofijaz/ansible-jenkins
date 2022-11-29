@@ -13,7 +13,9 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "QATools version: ${env.GIT_COMMIT}"
-                powershell 'echo "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}'
+                powershell """
+                    "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}
+                """
             }
         }
         stage('Deploy') {
