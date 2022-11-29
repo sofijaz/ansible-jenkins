@@ -8,7 +8,7 @@ pipeline {
             steps {
                 powershell """
                         if (-not (test-path ${BUILD_INFO}) ) {
-                            mkdir ${BUILD_INFO}
+                            New-Item ${BUILD_INFO}
                         }
                 """
             }
