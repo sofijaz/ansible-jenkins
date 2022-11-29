@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    environment {
+        BUILD_INFO = "${WORKSPACE}\\buildinfo.txt"
+    }
     stages {
         stage('Build') {
             steps {
@@ -11,7 +13,7 @@ pipeline {
             steps {
                 echo 'Testing..'
                 echo "QATools version: ${env.GIT_COMMIT}"
-                powershell 'echo "QATools version: ${env.GIT_COMMIT}" >> BUILD_INFO.txt'
+                powershell 'echo "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}'
             }
         }
         stage('Deploy') {
