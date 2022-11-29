@@ -4,7 +4,7 @@ pipeline {
         BUILD_INFO = "${WORKSPACE}\\buildinfo.txt"
     }
     stages {
-        stage('Mkdir') {
+        /*stage('Mkdir') {
             steps {
                 powershell """
                         if (-not (test-path ${BUILD_INFO}) ) {
@@ -12,7 +12,7 @@ pipeline {
                         }
                 """
             }
-        }
+        }*/
         stage('Build') {
             steps {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
@@ -23,6 +23,9 @@ pipeline {
                 echo 'Testing..'
                 echo "QATools version: ${env.GIT_COMMIT}"
                 powershell """
+                    if (-not (test-path ${BUILD_INFO}) ) {
+                            New-Item ${BUILD_INFO}
+                        }
                     "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}
                 """
             }
