@@ -4,6 +4,13 @@ pipeline {
         BUILD_INFO = "${WORKSPACE}\\buildinfo.txt"
     }
     stages {
+        stage('Mkdir') {
+            powershell """
+                    if (-not (test-path ${BINARIES_DIR}) ) {
+                        mkdir ${BINARIES_DIR}
+                    }
+             """
+        }
         stage('Build') {
             steps {
                 echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
