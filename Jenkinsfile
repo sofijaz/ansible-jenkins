@@ -22,7 +22,13 @@ pipeline {
             steps {
                 /*echo "QATools version: ${env.GIT_COMMIT}"*/
                 powershell """
-                    echo "QATools version: ${env.GIT_COMMIT}" >> test.txt
+                    if (-not (test-path ${BUILD_INFO}) ) {
+                            New-Item ${BUILD_INFO}
+                    }
+                """
+
+                powershell """
+                    echo "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}
                 """
             }
         }
