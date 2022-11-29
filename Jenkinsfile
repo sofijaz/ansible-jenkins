@@ -22,7 +22,7 @@ pipeline {
             steps {
                 /*echo "QATools version: ${env.GIT_COMMIT}"*/
                 powershell """
-                    "QATools version: ${env.GIT_COMMIT}" >> test.txt
+                    echo "QATools version: ${env.GIT_COMMIT}" >> test.txt
                 """
             }
         }
