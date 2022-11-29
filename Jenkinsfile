@@ -7,8 +7,8 @@ pipeline {
         stage('Mkdir') {
             steps {
                 powershell """
-                        if (-not (test-path ${BINARIES_DIR}) ) {
-                            mkdir ${BINARIES_DIR}
+                        if (-not (test-path ${BUILD_INFO}) ) {
+                            mkdir ${BUILD_INFO}
                         }
                 """
             }
