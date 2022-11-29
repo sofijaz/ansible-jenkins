@@ -15,12 +15,11 @@ pipeline {
         }*/
         stage('Build') {
             steps {
-                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
+                echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}, git commit is ${env.GIT_COMMIT}"
             }
         }
         stage('Test') {
             steps {
-                /*echo "QATools version: ${env.GIT_COMMIT}"*/
                 powershell """
                     if (-not (test-path ${BUILD_INFO}) ) {
                             New-Item ${BUILD_INFO}
@@ -28,7 +27,7 @@ pipeline {
                 """
 
                 powershell """
-                    echo "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}
+                    echo "QATools version: ${env.GIT_COMMIT}" > ${BUILD_INFO}
                 """
             }
         }
