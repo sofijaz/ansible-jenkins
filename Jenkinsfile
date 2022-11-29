@@ -10,7 +10,7 @@ pipeline {
                         if (-not (test-path ${BINARIES_DIR}) ) {
                             mkdir ${BINARIES_DIR}
                         }
-                 """
+                """
             }
         }
         stage('Build') {
