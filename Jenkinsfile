@@ -22,8 +22,7 @@ pipeline {
             steps {
                 /*echo "QATools version: ${env.GIT_COMMIT}"*/
                 powershell """
-                    New-Item ${BUILD_INFO}
-                    "QATools version: ${env.GIT_COMMIT[0..3]}" >> ${BUILD_INFO}
+                    "QATools version: ${env.GIT_COMMIT}" >> test.txt
                 """
             }
         }
