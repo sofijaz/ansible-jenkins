@@ -23,10 +23,7 @@ pipeline {
                 echo 'Testing..'
                 echo "QATools version: ${env.GIT_COMMIT}"
                 powershell """
-                    if (-not (test-path ${BUILD_INFO}) ) {
-                            New-Item ${BUILD_INFO}
-                        }
-                    "QATools version: ${env.GIT_COMMIT}" >> ${BUILD_INFO}
+                    "QATools version: ${env.GIT_COMMIT[0..3]}" >> ${BUILD_INFO}
                 """
             }
         }
